@@ -7,8 +7,8 @@ import java.util.List;
 public interface FruitService {
     public List<Fruit> getAllFruits();
     public Fruit getFruit(int id);
-    public boolean addFruit(Fruit fruit);
-    public boolean updateFruit(int id, Fruit newFruit);
-    public boolean deleteFruit(int id);
+    public void addFruit(Fruit fruit);
+    public void updateFruit(int id, Fruit newFruit);
+    public void deleteFruit(int id);
 
 }

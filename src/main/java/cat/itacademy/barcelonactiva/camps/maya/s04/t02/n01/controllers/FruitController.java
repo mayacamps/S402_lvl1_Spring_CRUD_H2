@@ -21,7 +21,6 @@ public class FruitController {
     @GetMapping("/getAll")
     public ResponseEntity<List<Fruit>> getAll() {
         List<Fruit> fruits = fruitServiceImp.getAllFruits();
-
         if (fruits.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -30,10 +29,8 @@ public class FruitController {
 
     @PostMapping("/add")
     public ResponseEntity<String> add(@RequestBody Fruit fruit) {
-        if (fruitServiceImp.addFruit(fruit)) {
-            return new ResponseEntity<>("Added correctly.", HttpStatus.OK);
-        }
-        return null;
+        fruitServiceImp.addFruit(fruit);
+        return new ResponseEntity<>("Added correctly.", HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
@@ -47,17 +44,13 @@ public class FruitController {
 
     @PutMapping("/update/{id}")
     public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody Fruit fruit){
-        if (fruitServiceImp.updateFruit(id, fruit)){
-            return ResponseEntity.status(HttpStatus.OK).body("Item updated.");
-        }
-        return null;
+        fruitServiceImp.updateFruit(id, fruit);
+        return ResponseEntity.status(HttpStatus.OK).body("Item updated.");
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id){
-        if (fruitServiceImp.deleteFruit(id)){
-            return new ResponseEntity<>("Item deleted.", HttpStatus.OK);
-        }
-        return null;
+        fruitServiceImp.deleteFruit(id);
+        return new ResponseEntity<>("Item deleted.", HttpStatus.OK);
     }
 }

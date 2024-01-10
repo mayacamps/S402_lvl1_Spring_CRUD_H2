@@ -31,31 +31,28 @@ public class FruitServiceImplementation implements FruitService {
     }
 
     @Override
-    public boolean addFruit(Fruit fruit) {
-        fruitRepo.save(new Fruit(fruit.getName(), fruit.getQuantKilos()));
-        return true;
+    public void addFruit(Fruit fruit) {
+        fruitRepo.save(fruit);
     }
 
     @Override
-    public boolean updateFruit(int id, Fruit newFruit) {
+    public void updateFruit(int id, Fruit newFruit) {
         Optional<Fruit> oldFruit = fruitRepo.findById(id);
         if (oldFruit.isPresent()){
             Fruit updatedFruit = oldFruit.get();
             updatedFruit.setName(newFruit.getName());
             updatedFruit.setQuantKilos(newFruit.getQuantKilos());
             fruitRepo.save(updatedFruit);
-            return true;
         } else{
             throw new EntityNotFoundException();
         }
     }
 
     @Override
-    public boolean deleteFruit(int id) {
+    public void deleteFruit(int id) {
         Optional<Fruit> fruitToDelete = fruitRepo.findById(id);
         if (fruitToDelete.isPresent()) {
             fruitRepo.deleteById(id);
-            return true;
         } else {
             throw new EntityNotFoundException();
         }

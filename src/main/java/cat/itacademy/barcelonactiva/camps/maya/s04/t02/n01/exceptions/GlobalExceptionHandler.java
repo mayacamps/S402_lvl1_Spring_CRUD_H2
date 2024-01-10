@@ -17,6 +17,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<String> handlingBadRequest(HttpMessageNotReadableException e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Input not correct");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Input not correct.");
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handlingAllOtherExceptions(Exception e){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error has occurred.");
     }
 }
