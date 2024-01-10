@@ -4,14 +4,14 @@ import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
 @Entity
-@Table(name = "fruits")
+@Table(name = "fruits", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Fruit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(name = "name")
+    @Column(nullable = false)
     private String name;
-    @Column(name = "quantKilos")
+    @Column()
     private int quantKilos;
 
     public Fruit(){}

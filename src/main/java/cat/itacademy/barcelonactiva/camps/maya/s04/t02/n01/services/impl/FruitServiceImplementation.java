@@ -7,7 +7,6 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -36,12 +35,11 @@ public class FruitServiceImplementation implements FruitService {
     }
 
     @Override
-    public void updateFruit(int id, Fruit newFruit) {
+    public void updateFruit(int id, int newQuantKilos) {
         Optional<Fruit> oldFruit = fruitRepo.findById(id);
         if (oldFruit.isPresent()){
             Fruit updatedFruit = oldFruit.get();
-            updatedFruit.setName(newFruit.getName());
-            updatedFruit.setQuantKilos(newFruit.getQuantKilos());
+            updatedFruit.setQuantKilos(newQuantKilos);
             fruitRepo.save(updatedFruit);
         } else{
             throw new EntityNotFoundException();
