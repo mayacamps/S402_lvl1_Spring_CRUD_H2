@@ -1,6 +1,7 @@
 package cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.exceptions;
 
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -20,8 +21,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Input not correct.");
     }
 
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handlingAllOtherExceptions(Exception e){
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error has occurred.");
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<String> handlingInputNameError(DataIntegrityViolationException e){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Input error. Fruit name cannot be null nor repeated.");
     }
+
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<String> handlingAllOtherExceptions(Exception e){
+//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error has occurred.");
+//    }
 }

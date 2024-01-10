@@ -43,8 +43,8 @@ public class FruitController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody int newQuantKilos){
-        fruitServiceImp.updateFruit(id, newQuantKilos);
+    public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody Fruit newFruit){
+        fruitServiceImp.updateFruit(id, newFruit);
         return ResponseEntity.status(HttpStatus.OK).body("Item updated.");
     }
 

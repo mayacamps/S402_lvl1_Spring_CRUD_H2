@@ -35,11 +35,15 @@ public class FruitServiceImplementation implements FruitService {
     }
 
     @Override
-    public void updateFruit(int id, int newQuantKilos) {
+    public void updateFruit(int id, Fruit fruit) {
         Optional<Fruit> oldFruit = fruitRepo.findById(id);
         if (oldFruit.isPresent()){
             Fruit updatedFruit = oldFruit.get();
-            updatedFruit.setQuantKilos(newQuantKilos);
+            if (fruit.getName() != null){
+                updatedFruit.setName(fruit.getName());
+            }
+            updatedFruit.setQuantKilos(fruit.getQuantKilos());
+            //TODO if only updated name, quant gets defaulted to O
             fruitRepo.save(updatedFruit);
         } else{
             throw new EntityNotFoundException();
