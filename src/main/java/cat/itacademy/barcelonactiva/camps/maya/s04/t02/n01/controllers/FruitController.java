@@ -52,4 +52,12 @@ public class FruitController {
         }
         return null;
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> delete(@PathVariable("id") int id){
+        if (fruitServiceImp.deleteFruit(id)){
+            return new ResponseEntity<>("Item deleted.", HttpStatus.OK);
+        }
+        return null;
+    }
 }

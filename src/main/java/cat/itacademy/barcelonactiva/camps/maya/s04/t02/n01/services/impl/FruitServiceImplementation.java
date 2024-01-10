@@ -52,6 +52,12 @@ public class FruitServiceImplementation implements FruitService {
 
     @Override
     public boolean deleteFruit(int id) {
-        return false;
+        Optional<Fruit> fruitToDelete = fruitRepo.findById(id);
+        if (fruitToDelete.isPresent()) {
+            fruitRepo.deleteById(id);
+            return true;
+        } else {
+            throw new EntityNotFoundException();
+        }
     }
 }
