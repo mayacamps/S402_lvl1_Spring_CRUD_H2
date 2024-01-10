@@ -11,8 +11,8 @@ public class Fruit {
     private int id;
     @Column(nullable = false)
     private String name;
-    @Column()
-    private int quantKilos;
+    @Column(nullable = false)
+    private Integer quantKilos;
 
     public Fruit(){}
     public Fruit(String name, int quantKilos) {
