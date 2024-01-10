@@ -3,9 +3,11 @@ package cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.controllers;
 import cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.domain.Fruit;
 import cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.services.impl.FruitServiceImplementation;
 import jakarta.persistence.EntityNotFoundException;
+import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,5 +43,13 @@ public class FruitController {
             throw new EntityNotFoundException();
         }
         return new ResponseEntity<>(fruit,HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody Fruit fruit){
+        if (fruitServiceImp.updateFruit(id, fruit)){
+            return ResponseEntity.status(HttpStatus.OK).body("Item updated.");
+        }
+        return null;
     }
 }
