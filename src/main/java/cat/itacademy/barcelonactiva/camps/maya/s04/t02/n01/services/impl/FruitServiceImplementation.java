@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -23,7 +24,8 @@ public class FruitServiceImplementation implements FruitService {
 
     @Override
     public Fruit getFruit(int id) {
-        return null;
+        Optional<Fruit> fruit = fruitRepo.findById(id);
+        return fruit.orElse(null);
     }
 
     @Override
