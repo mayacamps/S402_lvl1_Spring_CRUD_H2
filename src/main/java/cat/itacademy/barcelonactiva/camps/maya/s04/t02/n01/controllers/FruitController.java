@@ -3,11 +3,9 @@ package cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.controllers;
 import cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.domain.Fruit;
 import cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.services.impl.FruitServiceImplementation;
 import jakarta.persistence.EntityNotFoundException;
-import org.apache.tomcat.util.http.parser.HttpParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,7 +28,7 @@ public class FruitController {
     @PostMapping("/add")
     public ResponseEntity<String> add(@RequestBody Fruit fruit) {
         fruitServiceImp.addFruit(fruit);
-        return new ResponseEntity<>("Added correctly.", HttpStatus.OK);
+        return new ResponseEntity<>("Item successfully added.", HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")
@@ -45,12 +43,12 @@ public class FruitController {
     @PutMapping("/update/{id}")
     public ResponseEntity<String> update(@PathVariable("id") int id, @RequestBody Fruit newFruit){
         fruitServiceImp.updateFruit(id, newFruit);
-        return ResponseEntity.status(HttpStatus.OK).body("Item updated.");
+        return ResponseEntity.status(HttpStatus.OK).body("Item successfully updated.");
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable("id") int id){
         fruitServiceImp.deleteFruit(id);
-        return new ResponseEntity<>("Item deleted.", HttpStatus.OK);
+        return new ResponseEntity<>("Item successfully deleted.", HttpStatus.OK);
     }
 }

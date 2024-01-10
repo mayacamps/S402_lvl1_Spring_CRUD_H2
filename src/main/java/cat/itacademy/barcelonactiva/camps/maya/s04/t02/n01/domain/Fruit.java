@@ -42,6 +42,6 @@ public class Fruit {
 
     @Override
     public String toString(){
-        return "\t[id=" + id + ", \n\tname=" + name + ", \n\tquantity(kg)=" + quantKilos + "]\n";
+        return "Fruit:\n\t[id=" + id + ", \n\tname=" + name + ", \n\tquantity(kg)=" + quantKilos + "]\n";
     }
 }
