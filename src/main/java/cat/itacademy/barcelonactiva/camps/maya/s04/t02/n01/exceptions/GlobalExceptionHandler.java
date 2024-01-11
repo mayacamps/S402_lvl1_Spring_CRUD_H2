@@ -1,6 +1,5 @@
 package cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.exceptions;
 
-import com.fasterxml.jackson.core.JsonParseException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -10,8 +9,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.util.BindErrorUtils;
-
-import java.util.Arrays;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -36,8 +33,8 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Input error. " + BindErrorUtils.resolveAndJoin(e.getFieldErrors()));
     }
 
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<String> handlingAllOtherExceptions(Exception e){
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error has occurred.");
-//    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handlingAllOtherExceptions(Exception e){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error has occurred." + e.getMessage());
+    }
 }

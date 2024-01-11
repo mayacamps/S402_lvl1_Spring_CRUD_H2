@@ -3,7 +3,6 @@ package cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.lang.NonNull;
 
 @Entity
 @Table(name = "fruits", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
