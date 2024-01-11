@@ -1,6 +1,7 @@
 package cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.lang.NonNull;
 
@@ -14,6 +15,7 @@ public class Fruit {
     @NotNull(message = "cannot be null.")
     private String name;
     @NotNull(message = "cannot be null.")
+    @Min(value = 0, message =  "cannot be negative.")
     private Integer quantKilos;
 
     public Fruit(){}
