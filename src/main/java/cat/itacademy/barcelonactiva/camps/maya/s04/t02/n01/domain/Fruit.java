@@ -36,7 +36,7 @@ public class Fruit {
         this.name = name;
     }
 
-    public int getQuantKilos() {
+    public Integer getQuantKilos() {
         return quantKilos;
     }
 
