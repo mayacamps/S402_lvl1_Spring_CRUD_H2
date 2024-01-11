@@ -1,6 +1,7 @@
 package cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.lang.NonNull;
 
 @Entity
@@ -9,9 +10,10 @@ public class Fruit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(nullable = false)
+
+    @NotNull(message = "cannot be null.")
     private String name;
-    @Column(nullable = false)
+    @NotNull(message = "cannot be null.")
     private Integer quantKilos;
 
     public Fruit(){}

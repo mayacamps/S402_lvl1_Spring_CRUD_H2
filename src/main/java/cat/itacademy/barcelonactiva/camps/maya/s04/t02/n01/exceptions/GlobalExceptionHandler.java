@@ -1,12 +1,17 @@
 package cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.exceptions;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.util.BindErrorUtils;
+
+import java.util.Arrays;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -18,12 +23,17 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<String> handlingBadRequest(HttpMessageNotReadableException e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Input not correct.");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Input syntax error. \n" + e.getCause());
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ResponseEntity<String> handlingInputNameError(DataIntegrityViolationException e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Input error. Fruit name cannot be null nor repeated.");
+    public ResponseEntity<String> handlingRepeatedNameError(DataIntegrityViolationException e){
+        return ResponseEntity.status(HttpStatus.CONFLICT).body("Error. Item with this name already exists. \n" + e.getCause());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<String> handlingNullEntry(MethodArgumentNotValidException e){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Input error. " + BindErrorUtils.resolveAndJoin(e.getFieldErrors()));
     }
 
 //    @ExceptionHandler(Exception.class)
