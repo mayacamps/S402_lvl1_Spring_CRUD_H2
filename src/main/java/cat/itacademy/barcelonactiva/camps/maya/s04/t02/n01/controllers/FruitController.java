@@ -1,7 +1,7 @@
 package cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.controllers;
 
 import cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.domain.Fruit;
-import cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.services.impl.FruitServiceImplementation;
+import cat.itacademy.barcelonactiva.camps.maya.s04.t02.n01.services.impl.FruitServiceImp;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -13,9 +13,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/fruit/v1")
 public class FruitController {
-    private final FruitServiceImplementation fruitServiceImp;
+    private final FruitServiceImp fruitServiceImp;
 
-    public FruitController(FruitServiceImplementation fruitServiceImp) {
+    public FruitController(FruitServiceImp fruitServiceImp) {
         this.fruitServiceImp = fruitServiceImp;
     }
 

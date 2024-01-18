@@ -12,10 +12,10 @@ import java.util.Optional;
 
 
 @Service
-public class FruitServiceImplementation implements FruitService {
+public class FruitServiceImp implements FruitService {
     private final FruitRepository fruitRepo;
 
-    public FruitServiceImplementation(FruitRepository fruitRepo) {
+    public FruitServiceImp(FruitRepository fruitRepo) {
         this.fruitRepo = fruitRepo;
     }
 
